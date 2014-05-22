@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="object"> <!-- simple puzzle robot-->
+<robot name="object"> <!-- puzzle robot with collision for green box extremities-->
   <link name="base_link"> <!-- required name-->
     <inertial>
       <origin xyz="0 0 0" /> 
