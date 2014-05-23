@@ -82,11 +82,6 @@
   </joint>
         
   <link name="l_object_three"> <!-- fake body, end point of upper part -->
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1.0" />
-      <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
-    </inertial>
     <visual>
       <origin xyz="0 0.0052 0.0052"/>
       <geometry>
@@ -96,12 +91,6 @@
         <color rgba="0 1 0 1"/>
       </material>
     </visual>
-    <collision>
-      <origin xyz="0 0.0052 0.0052"/>
-      <geometry>
-        <box size="0.01 0.01 0.01"/>
-      </geometry>
-    </collision>
   </link>
   
   
@@ -112,11 +101,6 @@
   </joint>
         
   <link name="l_object_four"> <!-- fake body, end point of lower part -->
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1.0" />
-      <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
-    </inertial>
     <visual>
       <origin xyz="0 -0.0052 -0.0052"/>
       <geometry>
@@ -126,11 +110,5 @@
         <color rgba="0 1 0 1"/>
       </material>
     </visual>
-    <collision>
-      <origin xyz="0 -0.0052 -0.0052"/>
-      <geometry>
-        <box size="0.01 0.01 0.01"/>
-      </geometry>
-    </collision>    
   </link>  
 </robot>
