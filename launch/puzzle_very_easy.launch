@@ -1,7 +1,7 @@
 <launch>
   <param name="robot_description" command="cat $(find puzzle_description)/urdf/object.urdf"/>
-  <param name="decor_description" command="cat $(find puzzle_description)/urdf/decor.urdf"/>
-
+  <param name="decor_description" command="cat $(find puzzle_description)/urdf/decor_very_easy.urdf"/>
+    
   <node name="robot_state_publisher"
 	pkg="robot_state_publisher"
 	type="state_publisher"

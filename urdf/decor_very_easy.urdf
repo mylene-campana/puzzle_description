@@ -7,18 +7,18 @@
       <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="100.0"  iyz="0.0"  izz="1.0" />
     </inertial>
     <visual>
-      <origin xyz="-0.55 0 0"/>
+      <origin xyz="-0.575 0 -0.05"/>
       <geometry>
-        <box size="0.9 2 0.05" />
+        <box size="0.85 2 0.1" />
       </geometry>
       <material name="Blue">
         <color rgba="0 0 1 1"/>
       </material>
     </visual>
     <collision>
-      <origin xyz="-0.55 0 0"/>
+      <origin xyz="-0.575 0 -0.05"/>
       <geometry>
-        <box size="0.9 2 0.05" />
+        <box size="0.85 2 0.1" />
       </geometry>
     </collision>
   </link>
@@ -36,18 +36,18 @@
       <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="100.0"  iyz="0.0"  izz="1.0" />
     </inertial>
     <visual>
-      <origin xyz="0.55 0 0"/>
+      <origin xyz="0.575 0 -0.05"/>
       <geometry>
-        <box size="0.9 2 0.05" />
+        <box size="0.85 2 0.1" />
       </geometry>
       <material name="Blue">
         <color rgba="0 0 1 1"/>
       </material>
     </visual>
     <collision>
-      <origin xyz="0.55 0 0"/>
+      <origin xyz="0.575 0 -0.05"/>
       <geometry>
-        <box size="0.9 2 0.05" />
+        <box size="0.85 2 0.1" />
       </geometry>
     </collision>
   </link>
@@ -66,18 +66,18 @@
       <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="100.0"  iyz="0.0"  izz="1.0" />
     </inertial>
     <visual>
-      <origin xyz="0 -0.6 0"/>
+      <origin xyz="0 -0.75 -0.05"/>
       <geometry>
-        <box size="0.2 0.6 0.05" />
+        <box size="0.3 0.5 0.1" />
       </geometry>
       <material name="Blue">
         <color rgba="0 0 1 1"/>
       </material>
     </visual>
     <collision>
-      <origin xyz="0 -0.6 0"/>
+      <origin xyz="0 -0.75 -0.05"/>
       <geometry>
-        <box size="0.2 0.6 0.05" />
+        <box size="0.3 0.5 0.1" />
       </geometry>
     </collision>
   </link>
@@ -96,18 +96,18 @@
       <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="100.0"  iyz="0.0"  izz="1.0" />
     </inertial>
     <visual>
-      <origin xyz="0 0.6 0"/>
+      <origin xyz="0 0.75 -0.05"/>
       <geometry>
-        <box size="0.2 0.6 0.05" />
+        <box size="0.3 0.5 0.1" />
       </geometry>
       <material name="Blue">
         <color rgba="0 0 1 1"/>
       </material>
     </visual>
     <collision>
-      <origin xyz="0 0.6 0"/>
+      <origin xyz="0 0.75 -0.05"/>
       <geometry>
-        <box size="0.2 0.6 0.05" />
+        <box size="0.3 0.5 0.1" />
       </geometry>
     </collision>
   </link>
