@@ -6,7 +6,9 @@
 		      link2="l_object_one" />
   <disable_collisions link1="base_link"
 		      link2="l_object_two" />
- <disable_collisions link1="l_object_one"
+  <disable_collisions link1="l_object_one"
 		      link2="l_object_three" />
+  <disable_collisions link1="l_object_three"
+		      link2="l_object_four" />
 
 </robot>
