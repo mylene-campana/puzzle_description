@@ -1,19 +1,16 @@
 <?xml version="1.0"?>
 <robot name="decor"> <!-- puzzle environment -->
+  <material name="Blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+  
   <link name="decor_base">
-    <inertial>
-      <origin xyz="0 0 0" /> 
-      <mass value="1.0" />
-      <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="100.0"  iyz="0.0"  izz="1.0" />
-    </inertial>
     <visual>
       <origin xyz="-0.575 0 -0.05"/>
       <geometry>
         <box size="0.85 2 0.1" />
       </geometry>
-      <material name="Blue">
-        <color rgba="0 0 1 1"/>
-      </material>
+      <material name="Blue"/>
     </visual>
     <collision>
       <origin xyz="-0.575 0 -0.05"/>
@@ -40,9 +37,7 @@
       <geometry>
         <box size="0.85 2 0.1" />
       </geometry>
-      <material name="Blue">
-        <color rgba="0 0 1 1"/>
-      </material>
+      <material name="Blue"/>
     </visual>
     <collision>
       <origin xyz="0.575 0 -0.05"/>
@@ -60,19 +55,12 @@
   </joint>
         
   <link name="l_decor_two">
-    <inertial>
-      <origin xyz="0 0 0" /> 
-      <mass value="1.0" />
-      <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="100.0"  iyz="0.0"  izz="1.0" />
-    </inertial>
     <visual>
       <origin xyz="0 -0.75 -0.05"/>
       <geometry>
         <box size="0.3 0.5 0.1" />
       </geometry>
-      <material name="Blue">
-        <color rgba="0 0 1 1"/>
-      </material>
+      <material name="Blue"/>
     </visual>
     <collision>
       <origin xyz="0 -0.75 -0.05"/>
@@ -90,19 +78,12 @@
   </joint>
         
   <link name="l_decor_three">
-    <inertial>
-      <origin xyz="0 0 0" /> 
-      <mass value="1.0" />
-      <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="100.0"  iyz="0.0"  izz="1.0" />
-    </inertial>
     <visual>
       <origin xyz="0 0.75 -0.05"/>
       <geometry>
         <box size="0.3 0.5 0.1" />
       </geometry>
-      <material name="Blue">
-        <color rgba="0 0 1 1"/>
-      </material>
+      <material name="Blue"/>
     </visual>
     <collision>
       <origin xyz="0 0.75 -0.05"/>
