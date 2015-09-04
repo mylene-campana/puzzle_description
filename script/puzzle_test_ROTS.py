@@ -10,16 +10,15 @@ import time
 import numpy as np
 
 robot = Robot ('puzzle') # object5
-robot.setJointBounds('base_joint_xyz', [-0.9, 0.9, -0.9, 0.9, -1.2, 1.2])
+robot.setJointBounds('base_joint_xyz', [-0.9, 0.9, -0.9, 0.9, -1.5, 1.5])
 #robot.setJointBounds('base_joint_xyz', [-0.6, 0.6, -0.6, 0.6, -0.3, 1.0])
 ps = ProblemSolver (robot)
 cl = robot.client
-robot.getJointNames ()
-robot.getConfigSize ()
 
 # Configs : [x, y, z, qx1, qx2, qy1, qy2, qz1, qz2]
-q1 = [0, 0, 0.8, 1, 0, 1, 0, 1, 0]; q2 = [0, 0, -0.8, 1, 0, 1, 0, 1, 0]
+q1 = [0, 0, 0.9, 1, 0, 1, 0, 1, 0]; q2 = [0, 0, -0.9, 1, 0, 1, 0, 1, 0]
 #q1 = [0, 0, 0.8, 1, 0, 1, 0, 1, 0]; q2 = [0, 0, 0, 1, 0, 1, 0, 1, 0] # DEBUG
+q1 = [0, 0, 0.9, 0, 0, 0]; q2 = [0, 0, -0.9, 0, 0, 0]
 
 from hpp.gepetto import Viewer, PathPlayer
 r = Viewer (ps)
@@ -34,27 +33,40 @@ cl.obstacle.loadObstacleModel('puzzle_description','decor_very_easy','')
 #cl.obstacle.loadObstacleModel('puzzle_description','decor_easy','')
 #cl.obstacle.loadObstacleModel('puzzle_description','decor','')
 
+ps.selectPathPlanner ("VisibilityPrmPlanner") # 26min solve time
 begin=time.time()
 ps.solve ()
 end=time.time()
 print "Solving time: "+str(end-begin)
+ps.pathLength(0)
 
+ps.addPathOptimizer("GradientBased")
 begin=time.time()
 ps.optimizePath (0)
 end=time.time()
 print "Optim time: "+str(end-begin)
 cl.problem.getIterationNumber ()
+ps.pathLength(1)
+#vPRM: 24 iter, 25.3s->21s, weighted Cost + comp linear error
+#RRTc: 30 iter, 33.4s->14.9s, weighted Cost + comp linear error
 
 begin=time.time()
 ps.optimizePath (1)
 end=time.time()
 print "Optim time: "+str(end-begin)
+cl.problem.getIterationNumber ()
+ps.pathLength(2)
 
 len(ps.getWaypoints (0))
-cl.problem.getIterationNumber ()
-ps.pathLength(0)
-ps.pathLength(1)
-ps.pathLength(2)
+
+ps.selectPathOptimizer('RandomShortcut')
+
+
+r.startCapture ("capture","png")
+pp(1)
+r.stopCapture ()
+#ffmpeg -r 50 -i capture_0_%d.png -r 25 -vcodec libx264 video.mp4
+
 
 ## DEBUG commands
 cl.obstacle.getObstaclePosition('decor_base')
@@ -69,4 +81,6 @@ ps.clearRoadmap ()
 ps.resetGoalConfigs ()
 from numpy import *
 argmin(robot.distancesToCollision()[0])
+robot.getJointNames ()
+robot.getConfigSize ()
 
