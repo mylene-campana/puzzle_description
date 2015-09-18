@@ -1,18 +1,18 @@
 # Copyright (c) 2014-2015 CNRS
 # Author: Mylene Campana
 #
-# This file is part of puzzle-description.
-# hpp-hrp2 is free software: you can redistribute it
+# This file is part of puzzle_description.
+# puzzle_description is free software: you can redistribute it
 # and/or modify it under the terms of the GNU Lesser General Public
 # License as published by the Free Software Foundation, either version
 # 3 of the License, or (at your option) any later version.
 #
-# hpp-hrp2 is distributed in the hope that it will be
+# puzzle_description is distributed in the hope that it will be
 # useful, but WITHOUT ANY WARRANTY; without even the implied warranty
 # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Lesser Public License for more details.  You should have
 # received a copy of the GNU Lesser General Public License along with
-# hpp-hrp2.  If not, see
+# puzzle_description.  If not, see
 # <http://www.gnu.org/licenses/>.
 
 # Requires at least CMake 2.6 to configure the package.
@@ -33,16 +33,11 @@ ADD_REQUIRED_DEPENDENCY ("hpp-corbaserver >= 3")
 SET(CATKIN_PACKAGE_SHARE_DESTINATION
   ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME})
 
-install(FILES urdf/object.urdf
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf
-  )
-install(FILES urdf/decor.urdf
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf
-  )
-install(FILES urdf/decor_easy.urdf
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf
-  )
-install(FILES urdf/decor_very_easy.urdf
+install(FILES
+  urdf/object.urdf
+  urdf/decor.urdf
+  urdf/decor_easy.urdf
+  urdf/decor_very_easy.urdf
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf
   )
 install(FILES srdf/object.srdf 

@@ -13,8 +13,9 @@ robot.setJointBounds('base_joint_xyz', [-0.9, 0.9, -0.9, 0.9, -1., 1.])
 ps = ProblemSolver (robot)
 cl = robot.client
 
-q1 = [0.0, 0.0, 0.8, 1.0, 0.0, 0.0, 0.0]; q2 = [0.0, 0.0, -0.8, 1.0, 0.0, 0.0, 0.0]
-#q1 = [0.0, 0.0, 0.8, 1.0, 0.0, 0.0, 0.0]; q2 = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0] # simpler
+#q1 = [0.0, 0.0, 0.8, 1.0, 0.0, 0.0, 0.0]; q2 = [0.0, 0.0, -0.8, 1.0, 0.0, 0.0, 0.0]
+q1 = [0.0, 0.0, 0.8, 1.0, 0.0, 0.0, 0.0]; q2 = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0] # simpler
+#q1 = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0]; q2 = [0.0, 0.0, -0.8, 1.0, 0.0, 0.0, 0.0] # simpler2
 
 from hpp.gepetto import Viewer, PathPlayer
 r = Viewer (ps)
@@ -27,31 +28,43 @@ ps.setInitialConfig (q1); ps.addGoalConfig (q2)
 
 
 #ps.selectPathPlanner ("VisibilityPrmPlanner")
+ps.selectPathValidation ("Dichotomy", 0.)
 #ps.saveRoadmap ('/local/mcampana/devel/hpp/data/puzzle_veryEasy_PRM.rdm')
-ps.saveRoadmap ('/local/mcampana/devel/hpp/data/puzzle_veryEasy_RRT.rdm')
+ps.saveRoadmap ('/local/mcampana/devel/hpp/data/puzzle_easy_RRT.rdm')
+
 ps.solve ()
-ps.pathLength(0)
+
+q1bis = q2; q2bis = [0.0, 0.0, -0.8, 1.0, 0.0, 0.0, 0.0]
+ps.resetGoalConfigs ()
+ps.setInitialConfig (q1bis); ps.addGoalConfig (q2bis)
+ps.solve ()
+ps.resetGoalConfigs (); ps.setInitialConfig (q1); ps.addGoalConfig (q2bis)
+ps.solve ()
+i = ps.numberPaths()-1
+
+ps.pathLength(i)
 
 ps.addPathOptimizer('RandomShortcut')
-ps.optimizePath (0)
-ps.pathLength(1)
+ps.optimizePath (i)
+ps.pathLength(i+1)
 
 ps.clearPathOptimizers()
 ps.addPathOptimizer("GradientBased")
-ps.optimizePath (0)
+ps.optimizePath (i)
 ps.numberPaths()
 ps.pathLength(ps.numberPaths()-1)
 
 pp(ps.numberPaths()-1)
 
 
-
+len(ps.getWaypoints (i))
 
 # Add light to scene
-lightName = "li"
+lightName = "li2"
 r.client.gui.addLight (lightName, r.windowId, 0.005, [0.5,0.5,0.5,0.5])
 r.client.gui.addToGroup (lightName, r.sceneName)
-r.client.gui.applyConfiguration (lightName, [-2,0,0,1,0,0,0])
+#r.client.gui.applyConfiguration (lightName, [-2,0,0,1,0,0,0])
+r.client.gui.applyConfiguration (lightName, [2,0,0,1,0,0,0])
 r.client.gui.refresh ()
 
 
@@ -76,8 +89,6 @@ cl.obstacle.loadObstacleModel('puzzle_description','decor_very_easy','')
 ## DEBUG commands
 cl.obstacle.getObstaclePosition('decor_base')
 robot.getJointOuterObjects('j_object_one')
-robot.getJointOuterObjects('j_object_two')
-robot.getJointOuterObjects('j_object_three')
 robot.isConfigValid(q1)
 robot.distancesToCollision()
 r( ps.configAtDistance(0,5) )
