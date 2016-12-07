@@ -1,0 +1,36 @@
+<launch>
+  <param name="robot_description" command="cat $(find puzzle_description)/urdf/object.urdf"/>
+  <param name="decor_description" command="cat $(find puzzle_description)/urdf/decor.urdf"/>
+  
+  <!--<node name="odom_link_broadcaster"
+    pkg="tf" type="static_transform_publisher"  
+    args="0 0 0 0 0 0 /map /odom 500"/>-->
+
+  <node name="map_link_broadcaster"
+    pkg="tf" type="static_transform_publisher"  
+    args="0 0 0 0 0 0 /map /base_link 500"/>
+
+  <!--<node name="decor_link_broadcaster"
+    pkg="tf" type="static_transform_publisher"  
+    args="0 0 0 0 0 0 /decor_base /map 500"/>-->
+
+  <!-- source that publishes the joint positions as a sensor_msgs/JointState -->
+  <param name="use_gui" value="true"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+  <!-- robot visualization -->
+  <node name="rviz" pkg="rviz" type="rviz" required="true" />
+  <!-- <node name="rviz" pkg="rviz" type="rviz" respawn="false"/> -->
+  
+  <!-- publish all the frames to TF -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+    <param name="publish_frequency" value="50"/> <!-- Hz -->
+  </node>
+  <!--<node name="robot_state_publisher"
+	pkg="robot_state_publisher"
+	type="state_publisher"
+	respawn="true">
+    <param name="tf_prefix" value="" />
+  </node>-->
+
+</launch>
